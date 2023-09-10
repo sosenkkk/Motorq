@@ -1,9 +1,10 @@
 import { useRef } from "react";
 import { BASE_URL } from "../helper/helper";
 import { useToast } from "@chakra-ui/react";
-import MainNavigation from "../Components/MainNavigation";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = (props) => {
+    const navigate = useNavigate();
   const toast = useToast();
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -73,8 +74,10 @@ const Login = () => {
           status: "success",
           isClosable: true,
         });
+        navigate("/");
       }
     } else {
+        navigate("/login")
     }
   };
   return (

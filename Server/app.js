@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
+const authRoutes = require("./routes/authRoutes")
+
 const PORT = process.env.PORT || 8080;
 
 const mongoUrl =
@@ -23,10 +25,8 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 });
-app.use((req, res, next) => {
-  res.locals.isAuthenticated = true;
-  next();
-});
+
+app.use(authRoutes);
 
 
 
