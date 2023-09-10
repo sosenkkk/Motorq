@@ -91,7 +91,6 @@ const Login = (props) => {
               </h1>
               <form
                 className="space-y-4 md:space-y-6"
-                action="#"
                 onSubmit={loginHandler}
               >
                 <div>

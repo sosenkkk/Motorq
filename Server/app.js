@@ -3,12 +3,13 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
-const authRoutes = require("./routes/authRoutes")
+const authRoutes = require("./routes/authRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 const PORT = process.env.PORT || 8080;
 
 const mongoUrl =
-  "mongodb+srv://shashankraj:shashankraj@motorq.q35wks5.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://shashankraj:shashankraj@motorq.q35wks5.mongodb.net/motorq";
 app.options("*", cors());
 app.use(cors());
 app.use(bodyParser.json());
@@ -27,8 +28,7 @@ app.use((req, res, next) => {
 });
 
 app.use(authRoutes);
-
-
+app.use("/admin",adminRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error);
