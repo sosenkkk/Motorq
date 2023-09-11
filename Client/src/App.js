@@ -4,15 +4,16 @@ import Root from "./Pages/Root";
 import Error from "./Pages/Error";
 import Login from "./Pages/Login";
 import AddVehical from "./Pages/admin/AddVehical";
+import EnrollmentRequest from "./Pages/user/EnrollmentRequest";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <Error />,
-    children:[
+    children: [
       {
-        index:true,
+        index: true,
         element: <AddVehical />,
         errorElement: <Error />,
       },
@@ -21,10 +22,13 @@ const router = createBrowserRouter([
         element: <Login />,
         errorElement: <Error />,
       },
-    ]
+      {
+        path: "/enroll-vehical",
+        element: <EnrollmentRequest />,
+        errorElement: <Error />,
+      },
+    ],
   },
-  
-  
 ]);
 
 function App() {

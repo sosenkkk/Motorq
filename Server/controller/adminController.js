@@ -1,4 +1,4 @@
-const Vehical = require("../../model/VehicalMMY");
+const Vehical = require("../model/VehicalMMY");
 
 exports.addVehical = async (req, res, next) => {
 

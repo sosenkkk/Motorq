@@ -5,6 +5,7 @@ const cors = require("cors");
 const app = express();
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const PORT = process.env.PORT || 8080;
 
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
 
 app.use(authRoutes);
 app.use("/admin",adminRoutes);
+app.use(userRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error);
