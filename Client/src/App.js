@@ -3,7 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./Pages/Root";
 import Error from "./Pages/Error";
 import Login from "./Pages/Login";
-import AddVehical from "./Pages/admin/AddVehical";
+import AddVehicleMMY from "./Pages/admin/AddVehicleMMY";
 import EnrollmentRequest from "./Pages/user/EnrollmentRequest";
 
 const router = createBrowserRouter([
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <AddVehical />,
+        element: <AddVehicleMMY />,
         errorElement: <Error />,
       },
       {
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         errorElement: <Error />,
       },
       {
-        path: "/enroll-vehical",
+        path: "/enroll-vehicle",
         element: <EnrollmentRequest />,
         errorElement: <Error />,
       },

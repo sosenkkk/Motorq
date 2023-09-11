@@ -4,9 +4,9 @@ const router = express.Router();
 
 
 
-router.get('/get-vehicalmmy', userController.getVehicalData );
+router.get('/get-vehiclemmy', userController.getVehicleData );
 
-router.post('enroll-request', userController.enrollVehical)
+router.post('/enroll-request', userController.enrollVehicleRequest)
 
 
 

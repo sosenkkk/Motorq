@@ -1,16 +1,19 @@
-const Vehical = require("../model/VehicalMMY");
+const Vehicle = require("../model/VehicleMMY");
 
-exports.getVehicalData = async (req, res, next) => {
+exports.getVehicleData = async (req, res, next) => {
   try {
-    const vehicalmmydata = await Vehical.find();
-    console.log(vehicalmmydata);
-    res.status(200).json({message:"Data fetched", vehicalmmy: vehicalmmydata})
+    const vehiclemmydata = await Vehicle.find();
+    console.log(vehiclemmydata);
+    res.status(200).json({message:"Data fetched", vehiclemmy: vehiclemmydata})
   } catch (err) {
     console.log(err);
     next();
   }
 };
 
-exports.enrollVehical = async(req, res, next)=>{
-    
+exports.enrollVehicleRequest = async(req, res, next)=>{
+    const vin = req.body.vin;
+    const make = req.body.make;
+    const model = req.body.model;
+    const year = req.body.year;
 }

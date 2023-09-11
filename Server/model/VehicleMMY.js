@@ -12,4 +12,4 @@ const vehicalMMYSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Vehical", vehicalMMYSchema);
+module.exports = mongoose.model("Vehicle", vehicalMMYSchema);

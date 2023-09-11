@@ -1,8 +1,8 @@
-import vehicalmmyReducer from "./vehical-slice"
+import vehiclemmyReducer from "./vehicle-slice"
 import { configureStore } from "@reduxjs/toolkit"
 
 const store = configureStore({
-    reducer:{vehicalmmy: vehicalmmyReducer}
+    reducer:{vehiclemmy: vehiclemmyReducer}
 })
 
 export default store;

@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 
-router.post('/add-vehical', adminController.addVehical )
+router.post('/add-vehicle', adminController.addVehicleMMY )
 
 
 

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchvehicalData, vehicalActions } from "../../store/vehical-slice";
+import { fetchvehicleData, vehicleActions } from "../../store/vehicle-slice";
 import { useToast } from "@chakra-ui/react";
 import { BASE_URL } from "./../../helper/helper";
 const EnrollmentRequest = (props) => {
@@ -9,17 +9,17 @@ const EnrollmentRequest = (props) => {
   const dispatch = useDispatch();
   const vinRef = useRef();
   const toast = useToast();
-  const vehicalData = useSelector((state) => state.vehicalmmy.vehicalmmy);
-  const chosenMake = useSelector((state) => state.vehicalmmy.make);
-  const chosenModel = useSelector((state) => state.vehicalmmy.model);
-  const chosenYear = useSelector((state) => state.vehicalmmy.year);
-  const chosenVin = useSelector((state) => state.vehicalmmy.vin);
+  const vehicleData = useSelector((state) => state.vehiclemmy.vehiclemmy);
+  const chosenMake = useSelector((state) => state.vehiclemmy.make);
+  const chosenModel = useSelector((state) => state.vehiclemmy.model);
+  const chosenYear = useSelector((state) => state.vehiclemmy.year);
+  const chosenVin = useSelector((state) => state.vehiclemmy.vin);
   useEffect(() => {
-    dispatch(fetchvehicalData());
+    dispatch(fetchvehicleData());
   }, [dispatch]);
 
   const autofllVin = () => {
-    return vehicalData
+    return vehicleData
       .filter((data) => {
         return (
           data.make === chosenMake &&
@@ -33,15 +33,15 @@ const EnrollmentRequest = (props) => {
     const selected = event.target.value;
 
     if (event.target.id === "make") {
-      dispatch(vehicalActions.choseMake(selected));
+      dispatch(vehicleActions.choseMake(selected));
     }
     if (event.target.id === "model") {
-      dispatch(vehicalActions.choseModel(selected));
+      dispatch(vehicleActions.choseModel(selected));
     }
     if (event.target.id === "year") {
-      dispatch(vehicalActions.choseYear(selected));
+      dispatch(vehicleActions.choseYear(selected));
       const vinHere = autofllVin();
-      dispatch(vehicalActions.choseVin(vinHere));
+      dispatch(vehicleActions.choseVin(vinHere));
     }
   };
 
@@ -97,7 +97,7 @@ const EnrollmentRequest = (props) => {
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 max-w-[800px] xl:p-0 ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
-                Enroll Your Vehical
+                Enroll Your Vehicle
               </h1>
               <form
                 className="space-y-4 md:space-y-6"
@@ -115,7 +115,8 @@ const EnrollmentRequest = (props) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 "
                     onClick={disptachHandler}
                   >
-                    {vehicalData.map((data) => (
+                    <option>Select</option>
+                    {vehicleData.map((data) => (
                       <option key={data._id}>{data.make}</option>
                     ))}
                   </select>
@@ -132,7 +133,9 @@ const EnrollmentRequest = (props) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 "
                     onClick={disptachHandler}
                   >
-                    {vehicalData
+                    <option>Select</option>
+
+                    {vehicleData
                       .filter(function (data) {
                         return data.make === chosenMake;
                       })
@@ -154,7 +157,8 @@ const EnrollmentRequest = (props) => {
                     onClick={disptachHandler}
                     onChange={disptachHandler}
                   >
-                    {vehicalData
+                    <option>Select</option>
+                    {vehicleData
                       .filter(function (data) {
                         return (
                           data.make === chosenMake && data.model === chosenModel
@@ -187,7 +191,7 @@ const EnrollmentRequest = (props) => {
                     type="submit"
                     className="w-full text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
                   >
-                    Add Vehical
+                    Add Vehicle
                   </button>
                 </div>
               </form>

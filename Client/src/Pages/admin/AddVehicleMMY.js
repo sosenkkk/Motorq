@@ -3,7 +3,7 @@ import { BASE_URL } from "../../helper/helper";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-const AddVehical = (props) => {
+const AddVehicleMMY = (props) => {
   const navigate = useNavigate();
   const toast = useToast();
   const makeref = useRef();
@@ -25,32 +25,55 @@ const AddVehical = (props) => {
       return false;
     }
   };
-  const validateMMYHandler = (password) => {
-    if (password.trim().length > 0) {
+  const validateMMYHandler = (value) => {
+    if (value.trim().length > 0) {
       return true;
     } else {
       toast({
-        title: "Password must contain atleast 6 characters.",
+        title: "Field Cannot be empty!",
         status: "error",
         isClosable: true,
       });
       return false;
     }
   };
-  const validateVINHandler = (vin) => {
-    if (vin.trim().length === 8) {
-      return true;
-    } else {
+  const vinRegex = new RegExp(/^[A-Z0-9]{8}$/);
+  const yearRegex = new RegExp(/^[0-9]{4}$/);
+
+  const validateYearHandler = (year) => {
+    if (!yearRegex.test(year) ) {
       toast({
-        title: "Incorrect VIN. Should be 8 characters.",
+        title: "Invalid year value.",
         status: "error",
         isClosable: true,
       });
+      return false;
+    } else {
+      return true;
+    }
+  };
+  const validateVINHandler = (vin) => {
+    if (vinRegex.test(vin)) {
+      return true;
+    } else {
+      if (vin.length !== 8) {
+        toast({
+          title: "VIN can contain only 8 characters.",
+          status: "error",
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: "VIN can contain only Captial alphabets and numbers.",
+          status: "error",
+          isClosable: true,
+        });
+      }
       return false;
     }
   };
 
-  const addVehicalHandler = async (event) => {
+  const addVehicleHandler = async (event) => {
     event.preventDefault();
     const make = makeref.current.value;
     const model = modelref.current.value;
@@ -60,10 +83,11 @@ const AddVehical = (props) => {
       validateMMYHandler(make) &&
       validateMMYHandler(model) &&
       validateMMYHandler(year) &&
+      validateYearHandler(year) &&
       validateVINHandler(vin);
 
     if (validation) {
-      const response = await fetch(BASE_URL + "admin/add-vehical", {
+      const response = await fetch(BASE_URL + "admin/add-vehicle", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -102,18 +126,18 @@ const AddVehical = (props) => {
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 max-w-[800px] xl:p-0 ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
-                Add Vehical
+                Add Vehicle MMY and VIN
               </h1>
               <form
                 className="space-y-4 md:space-y-6"
-                onSubmit={addVehicalHandler}
+                onSubmit={addVehicleHandler}
               >
                 <div>
                   <label
                     htmlFor="make"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    Make
+                    Make / Manufacturer
                   </label>
                   <input
                     type="text"
@@ -121,7 +145,7 @@ const AddVehical = (props) => {
                     name="make"
                     id="make"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 "
-                    placeholder="make"
+                    placeholder="Enter make"
                   />
                 </div>
                 <div>
@@ -129,7 +153,7 @@ const AddVehical = (props) => {
                     htmlFor="model"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    Model
+                    Model of Car
                   </label>
                   <input
                     type="text"
@@ -137,7 +161,7 @@ const AddVehical = (props) => {
                     name="model"
                     id="model"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 "
-                    placeholder="model"
+                    placeholder="Enter model"
                   />
                 </div>
                 <div>
@@ -145,15 +169,15 @@ const AddVehical = (props) => {
                     htmlFor="year"
                     className="block mb-2 text-sm font-medium text-gray-900 "
                   >
-                    Year
+                    Year of Manufacture
                   </label>
                   <input
-                    type="date"
+                    type="text"
                     ref={yearref}
                     name="year"
                     id="year"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 "
-                    placeholder="year"
+                    placeholder="Enter year"
                   />
                 </div>
                 <div>
@@ -169,7 +193,7 @@ const AddVehical = (props) => {
                     name="vin"
                     id="vin"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 "
-                    placeholder="vin"
+                    placeholder="Enter VIN"
                   />
                 </div>
 
@@ -178,7 +202,7 @@ const AddVehical = (props) => {
                     type="submit"
                     className="w-full text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  "
                   >
-                    Add Vehical
+                    Add Vehicle
                   </button>
                 </div>
               </form>
@@ -190,4 +214,4 @@ const AddVehical = (props) => {
   );
 };
 
-export default AddVehical;
+export default AddVehicleMMY;

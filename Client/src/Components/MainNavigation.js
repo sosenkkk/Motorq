@@ -59,18 +59,18 @@ export default function MainNavigation() {
               </li>
               <li>
                 <Link
-                  to="login"
+                  to="/enroll-vehicle"
                   className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
                 >
-                  Pricing
+                  Enroll Vehicle
                 </Link>
               </li>
               <li>
                 <Link
-                  to="login"
+                  to="/requests"
                   className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
                 >
-                  Contact
+                  Requests
                 </Link>
               </li>
             </ul>

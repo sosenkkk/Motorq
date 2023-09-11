@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { BASE_URL } from "./../helper/helper";
+import { BASE_URL } from "../helper/helper";
 
-const vehicalSlice = createSlice({
-  name: "vehicalmmy",
+const vehicleSlice = createSlice({
+  name: "vehiclemmy",
   initialState: {
-    vehicalmmy: [],
+    vehiclemmy: [],
     make:"",
     model:"",
-    year:"",
-    vin:""
+    vin:"",
+    year:""
   },
   reducers: {
-    getvehicalData(state, action) {
-      state.vehicalmmy = action.payload.vehicalmmy;
+    getvehicleData(state, action) {
+      state.vehiclemmy = action.payload.vehiclemmy;
     },
     choseMake(state,action){
         state.make = action.payload;
@@ -29,22 +29,22 @@ const vehicalSlice = createSlice({
   },
 });
 
-export const fetchvehicalData = () => {
+export const fetchvehicleData = () => {
   return async (dispatch) => {
     const fetchData = async () => {
-      const response = await fetch(BASE_URL + "get-vehicalmmy");
+      const response = await fetch(BASE_URL + "get-vehiclemmy");
       if (!response.ok) {
-        throw new Error("Fetch Failed");
+        throw new Error("Fetch Failed!");
       }
       const data = await response.json();
-      
-      return data.vehicalmmy;
+      return data.vehiclemmy;
     };
     try {
-      const vehicalData = await fetchData();
+      const vehicleData = await fetchData();
+      
       dispatch(
-        vehicalActions.getvehicalData({
-            vehicalmmy: vehicalData
+        vehicleActions.getvehicleData({
+            vehiclemmy: vehicleData
         })
       );
     } catch (err) {
@@ -53,5 +53,5 @@ export const fetchvehicalData = () => {
   };
 };
 
-export const vehicalActions = vehicalSlice.actions;
-export default vehicalSlice.reducer;
+export const vehicleActions = vehicleSlice.actions;
+export default vehicleSlice.reducer;
