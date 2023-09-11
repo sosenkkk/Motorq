@@ -1,4 +1,5 @@
 import { useRouteError } from 'react-router';
+import MainNavigation from '../Components/MainNavigation';
 
 function Error() {
     const error = useRouteError();
@@ -19,8 +20,10 @@ function Error() {
 
     return <>
     
-        
-            <p>{message}</p>
+            <MainNavigation />
+            <div className='flex center text-3xl w-full py-8 center'>
+                <h1 className='m-auto'>404 Page doest not exist!</h1>
+            </div>
         
     </>
 }

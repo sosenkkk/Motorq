@@ -4,21 +4,22 @@ import { BASE_URL } from "../helper/helper";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    userid:"",
+    userId:"",
     firstName:"",
     isauthenticated:false,
-    isAdmin:false
+    isAdmin:null
   },
   reducers: {
     isLoggedIn(state, action) {
       state.isauthenticated = action.payload;
     },
     setUserId(state, action){
-        state.userid = action.payload
+        state.userId = action.payload
     },
     isAdmin(state, action) {
         state.isAdmin = action.payload;
       },
+      
 
   },
 });

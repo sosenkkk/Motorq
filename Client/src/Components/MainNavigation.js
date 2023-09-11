@@ -67,7 +67,8 @@ export default function MainNavigation() {
                   Logout
                 </button>}
               </li>
-              { isAdmin && <li>
+              { isAdmin &&  
+              <li>
                 <Link
                   to="/"
                   className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
@@ -75,36 +76,22 @@ export default function MainNavigation() {
                   Add Vehical MMY
                 </Link>
               </li>}
-              {!isAdmin && <li>
-                <Link
-                  to="/enroll-vehicle"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-                >
-                  Enroll Vehicle Request
-                </Link>
-              </li>}
+              
+              
               { isAdmin &&  
               <li>
                 <Link
-                  to="/admin/requests"
+                  to="/my-requests"
                   className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
                 >
-                  Requests
+                  User Requests
                 </Link>
               </li>}
-              { isAdmin &&  
+              
+              { !isAdmin &&  isAdmin != null &&
               <li>
                 <Link
-                  to="/admin/requests"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-                >
-                  Graph
-                </Link>
-              </li>}
-              { !isAdmin &&  
-              <li>
-                <Link
-                  to="/admin/requests"
+                  to="/my-requests"
                   className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
                 >
                   My Requests

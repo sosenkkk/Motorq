@@ -41,7 +41,6 @@ export const fetchvehicleData = () => {
     };
     try {
       const vehicleData = await fetchData();
-      
       dispatch(
         vehicleActions.getvehicleData({
             vehiclemmy: vehicleData

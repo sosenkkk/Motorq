@@ -14,6 +14,7 @@ const EnrollmentRequest = (props) => {
   const chosenModel = useSelector((state) => state.vehiclemmy.model);
   const chosenYear = useSelector((state) => state.vehiclemmy.year);
   const chosenVin = useSelector((state) => state.vehiclemmy.vin);
+  const userId = useSelector((state)=>state.user.userId)
   useEffect(() => {
     dispatch(fetchvehicleData());
   }, [dispatch]);
@@ -61,7 +62,9 @@ const EnrollmentRequest = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
+
         body: JSON.stringify({
+          userId:userId,
           make: chosenMake,
           year:chosenYear,
           model:chosenModel,
