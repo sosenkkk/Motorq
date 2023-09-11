@@ -49,6 +49,7 @@ const EnrollmentRequest = (props) => {
     event.preventDefault();
     const vin = vinRef.current.value.toString();
     if (vin.slice(0, 8) !== chosenVin || vin.length !== 17) {
+      console.log(chosenVin,  vin.slice(0, 8), vin.length)
       toast({
         title: "Invalid VIN characters",
         status: "error",
@@ -64,7 +65,8 @@ const EnrollmentRequest = (props) => {
           make: chosenMake,
           year:chosenYear,
           model:chosenModel,
-          vin:vin
+          vin:vin,
+          status:"Pending"
         }),
       });
       const res = await response.json();

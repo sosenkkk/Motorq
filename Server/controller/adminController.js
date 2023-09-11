@@ -1,7 +1,6 @@
 const Vehicle = require("../model/VehicleMMY");
 
 exports.addVehicleMMY = async (req, res, next) => {
-
   const make = req.body.make;
   const model = req.body.model;
   const year = req.body.year;

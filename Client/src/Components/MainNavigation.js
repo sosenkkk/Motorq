@@ -1,6 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { userActions } from "../store/user";
 
 export default function MainNavigation() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const isauthenticated = useSelector((state)=>state.user.isauthenticated)
+  const isAdmin = useSelector((state)=> state.user.isAdmin)
+   const logoutHandler=()=>{
+    dispatch(userActions.isLoggedIn(false))
+    navigate('/login')
+   }
   return (
     <>
       <nav className="bg-[#ebebeb] border-gray-200 ">
@@ -41,38 +51,65 @@ export default function MainNavigation() {
           </button>
           <div className="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 roundedLg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#ebebeb] ">
-              <li>
+              <li>{ !isauthenticated &&
                 <Link
                   to="login"
                   className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
                 >
                   Login
-                </Link>
+                </Link>}
               </li>
-              <li>
+              <li>{ isauthenticated &&
+                <button
+                  onClick={logoutHandler}
+                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                >
+                  Logout
+                </button>}
+              </li>
+              { isAdmin && <li>
                 <Link
                   to="/"
                   className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
                 >
-                  Add Vehical
+                  Add Vehical MMY
                 </Link>
-              </li>
-              <li>
+              </li>}
+              {!isAdmin && <li>
                 <Link
                   to="/enroll-vehicle"
                   className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
                 >
-                  Enroll Vehicle
+                  Enroll Vehicle Request
                 </Link>
-              </li>
+              </li>}
+              { isAdmin &&  
               <li>
                 <Link
-                  to="/requests"
+                  to="/admin/requests"
                   className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
                 >
                   Requests
                 </Link>
-              </li>
+              </li>}
+              { isAdmin &&  
+              <li>
+                <Link
+                  to="/admin/requests"
+                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                >
+                  Graph
+                </Link>
+              </li>}
+              { !isAdmin &&  
+              <li>
+                <Link
+                  to="/admin/requests"
+                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                >
+                  My Requests
+                </Link>
+              </li>}
             </ul>
           </div>
         </div>

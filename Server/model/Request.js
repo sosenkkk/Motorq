@@ -4,11 +4,12 @@ const Schema = mongoose.Schema;
 
 const requestSchema = new Schema(
   {
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    // user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     make: { type: String, required: true },
     model: { type: String, required: true },
     year: { type: String, required: true },
     vin: { type: String, required: true },
+    status :{type:String, required : true}
   },
   { timestamps: true }
 );

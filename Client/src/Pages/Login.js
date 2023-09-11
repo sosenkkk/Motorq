@@ -2,9 +2,13 @@ import { useRef } from "react";
 import { BASE_URL } from "../helper/helper";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { userActions } from "../store/user";
 
 const Login = (props) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
   const toast = useToast();
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -69,6 +73,8 @@ const Login = (props) => {
           isClosable: true,
         });
       } else if (response.status == 201) {
+        dispatch(userActions.isLoggedIn(true))
+        dispatch(userActions.isAdmin(res.user.admin))
         toast({
           title: res.message,
           status: "success",
